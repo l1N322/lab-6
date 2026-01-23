@@ -53,32 +53,33 @@ def main():
     while True:
         command = input(">>> ").lower()
 
-        if command == 'exit':
-            break
+        match command:
+            case 'exit':
+                break
 
-        elif command == 'add':
-            goods = add_products()
-            products.append(goods)
-            if len(products) > 1:
-                products.sort(key=lambda item: item.get('магазин', ''))
+            case 'add':
+                goods = add_products()
+                products.append(goods)
+                if len(products) > 1:
+                    products.sort(key=lambda item: item.get('магазин', ''))
 
-        elif command == 'list':
-            list_products(products)
+            case 'list':
+                list_products(products)
 
-        elif command == 'search':
-            search_products(products)
+            case 'search':
+                search_products(products)
 
-        elif command == 'help':
-            print("Список команд:\n")
-            print("add - добавить товар;")
-            print("list - вывести список товаров;")
-            print("search - вывести информацию о товарах, продающихся в данном магазине;")
-            print("help - отобразить справку;")
-            print("exit - завершить работу с программой.")
+            case 'help':
+                print("Список команд:\n")
+                print("add - добавить товар;")
+                print("list - вывести список товаров;")
+                print("search - вывести информацию о товарах, продающихся в данном магазине;")
+                print("help - отобразить справку;")
+                print("exit - завершить работу с программой.")
 
-        else:
-            print(f"Неизвестная команда {command}", file=sys.stderr)
-            return 1
+            case _:
+                print(f"Неизвестная команда {command}", file=sys.stderr)
+                return 1
 
     return 0
 
